@@ -196,24 +196,19 @@ dependencies: [transformers>=4.47.0, trl>=0.14.0, datasets>=3.2.0, peft>=0.14.0,
 
 ### Step 6: Update Marketplace
 
-Add your skill to `.claude-plugin/marketplace.json` so it appears in the Claude Code plugin marketplace.
+All 98 skills ship as **one plugin** (`ai-research-skills`) in
+`.claude-plugin/marketplace.json`, so they install together and work
+together in the same session. Add your skill's path to that single
+plugin's `skills` array — do not create a new plugin entry.
 
-**Add a new entry to the `plugins` array:**
+**Add a new line to the existing `skills` array:**
 ```json
-{
-  "name": "your-skill-name",
-  "source": "./XX-category/skill-folder",
-  "description": "Description from your SKILL.md frontmatter (what it does AND when to use it)"
-}
+"./XX-category/skill-folder"
 ```
 
 **Example:**
 ```json
-{
-  "name": "serving-llms-vllm",
-  "source": "./12-inference-serving/vllm",
-  "description": "Serves LLMs with high throughput using vLLM's PagedAttention and continuous batching. Use when deploying production LLM APIs or optimizing inference latency/throughput."
-}
+"./12-inference-serving/vllm"
 ```
 
 **Validation:**

@@ -125,19 +125,19 @@ npx @orchestra-research/ai-research-skills update    # Update installed skills
 <details>
 <summary><b>Claude Code Marketplace (Alternative)</b></summary>
 
-Install skill categories directly using the **Claude Code CLI**:
+Install all 98 skills at once, as a single plugin, using the **Claude Code CLI**:
 
 ```bash
 # Add the marketplace
 /plugin marketplace add orchestra-research/AI-research-SKILLs
 
-# Install by category (23 categories available)
-/plugin install fine-tuning@ai-research-skills        # Axolotl, LLaMA-Factory, PEFT, Unsloth
-/plugin install post-training@ai-research-skills      # TRL, GRPO, OpenRLHF, SimPO, verl, slime, miles, torchforge
-/plugin install inference-serving@ai-research-skills  # vLLM, TensorRT-LLM, llama.cpp, SGLang
-/plugin install distributed-training@ai-research-skills
-/plugin install optimization@ai-research-skills
+# Install every skill in one shot — they all become available together
+/plugin install ai-research-skills@ai-research-skills
 ```
+
+All 98 skills ship as one plugin so they work together in the same session
+(e.g. fine-tuning + evaluation + paper writing in one workflow) instead of
+being installed piecemeal by category.
 
 </details>
 
