@@ -43,7 +43,7 @@ For the full rule list per category (all ~98 UX guidelines with rationale), read
 The search script lives inside this skill's own directory, not the project directory. Always invoke it by its full path — do not assume a particular working directory:
 
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "<query>" --domain <domain>
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "<query>" --domain <domain>
 ```
 
 If `python` is not found, try `python3`, then `py -3`. Requires Python 3.x, no external dependencies (see README for install instructions if Python is missing).
@@ -63,14 +63,14 @@ Extract from the user request:
 Always start with `--design-system` to get comprehensive recommendations with reasoning:
 
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
 ```
 
 This searches product/style/color/landing/typography domains in parallel, applies reasoning rules from `ui-reasoning.csv`, and returns pattern, style, colors, typography, effects, and anti-patterns to avoid.
 
 **Example:**
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "beauty spa wellness service" --design-system -p "Serenity Spa"
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "beauty spa wellness service" --design-system -p "Serenity Spa"
 ```
 
 ### Step 2b: Persist Design System (Master + Overrides Pattern)
@@ -78,7 +78,7 @@ python "ui-ux-pro-max/scripts/search.py" "beauty spa wellness service" --design-
 To save the design system for retrieval across sessions, add `--persist` **and always pass `--output-dir` pointed at the project root** — without it, files are written relative to whatever directory the tool happens to run from:
 
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "<query>" --design-system --persist -p "Project Name" --output-dir "<project-root>"
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "<query>" --design-system --persist -p "Project Name" --output-dir "<project-root>"
 ```
 
 This creates:
@@ -99,7 +99,7 @@ If `design-system/<project-slug>/MASTER.md` already exists, `--persist` **skips 
 Three optional 1-10 sliders that tune `--design-system` output without changing your query. Add any combination of them to the same command:
 
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "<query>" --design-system --variance <1-10> --motion <1-10> --density <1-10>
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "<query>" --design-system --variance <1-10> --motion <1-10> --density <1-10>
 ```
 
 | Dial | Low (1-3) | Mid (4-7) | High (8-10) |
@@ -114,13 +114,13 @@ python "ui-ux-pro-max/scripts/search.py" "<query>" --design-system --variance <1
 
 **Example:**
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "internal analytics dashboard" --design-system --variance 8 --motion 7 --density 8 -p "Ops Console"
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "internal analytics dashboard" --design-system --variance 8 --motion 7 --density 8 -p "Ops Console"
 ```
 
 ### Step 3: Supplement with Detailed Searches (as needed)
 
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "<keyword>" --domain <domain> [-n <max_results>]
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "<keyword>" --domain <domain> [-n <max_results>]
 ```
 
 | Need | Domain | Example |
@@ -143,7 +143,7 @@ Domain is auto-detected from the query if `--domain` is omitted — but auto-det
 ### Step 4: Stack Guidelines
 
 ```bash
-python "ui-ux-pro-max/scripts/search.py" "<keyword>" --stack <stack>
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "<keyword>" --stack <stack>
 ```
 
 **Available stacks:** `react`, `nextjs`, `vue`, `svelte`, `astro`, `nuxtjs`, `nuxt-ui`, `angular`, `laravel`, `swiftui`, `react-native`, `flutter`, `jetpack-compose`, `html-tailwind`, `shadcn`, `threejs`, `javafx`, `wpf`, `winui`, `avalonia`, `uno`, `uwp`. Use the stack detected in Step 1.
@@ -163,13 +163,13 @@ Do not fabricate output. Instead:
 
 ```bash
 # Step 2: design system
-python "ui-ux-pro-max/scripts/search.py" "AI search tool modern minimal" --design-system -p "AI Search"
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "AI search tool modern minimal" --design-system -p "AI Search"
 
 # Step 3: supplement
-python "ui-ux-pro-max/scripts/search.py" "search loading animation" --domain ux
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "search loading animation" --domain ux
 
 # Step 4: stack guidelines
-python "ui-ux-pro-max/scripts/search.py" "suspense streaming bundle" --stack nextjs
+python ".claude/skills/ui-ux-pro-max/scripts/search.py" "suspense streaming bundle" --stack nextjs
 ```
 
 Then synthesize the design system + detailed searches and implement.
