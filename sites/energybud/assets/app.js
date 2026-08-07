@@ -44,18 +44,6 @@
   }
   window.EnergyBud = { addToCart: addToCart, getCart: getCart, setCart: setCart, PRICE: PRICE };
 
-  /* ---------- Home: variant swatches ---------- */
-  var vs1 = document.getElementById('vs1'), vs2 = document.getElementById('vs2'), vn = document.getElementById('variantName');
-  document.querySelectorAll('.swatch').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.swatch').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
-      btn.setAttribute('aria-pressed', 'true');
-      if (vs1) vs1.setAttribute('stop-color', btn.dataset.c1);
-      if (vs2) vs2.setAttribute('stop-color', btn.dataset.c2);
-      if (vn) vn.textContent = btn.dataset.name;
-    });
-  });
-
   /* ---------- Product page ---------- */
   var pdp = document.getElementById('pdp');
   if (pdp) {
@@ -76,19 +64,9 @@
       th.addEventListener('click', function () {
         document.querySelectorAll('.thumb').forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
         th.setAttribute('aria-pressed', 'true');
-        currentColor = { name: th.dataset.name, c1: th.dataset.c1, c2: th.dataset.c2 };
-        if (g1) g1.setAttribute('stop-color', th.dataset.c1);
-        if (g2) g2.setAttribute('stop-color', th.dataset.c2);
-        if (colorName) colorName.textContent = th.dataset.name;
-        // Swap the main photo when one exists for this colourway
-        var slot = document.querySelector('.gallery-main .shot');
-        if (slot && th.dataset.img) {
-          slot.dataset.photo = th.dataset.img;
-          var cur = slot.querySelector('.shot-img');
-          if (cur) cur.remove();
-          slot.classList.remove('has-photo');
-          mountPhoto(slot);
-        }
+        // Swap the main photo for this colourway
+        var mainImg = document.querySelector('.gallery-main .shot-img');
+        if (mainImg && th.dataset.img) mainImg.src = th.dataset.img;
       });
     });
 
@@ -162,24 +140,17 @@
   }
 
   /* ---------- Photo slots ----------
-     Each .shot[data-photo] ships an SVG illustration as its default. We HEAD-probe the
-     photo first: a 404 resolves normally (no console error, no broken-image icon), so the
-     page stays clean until the real photography is uploaded — then it appears by itself. */
-  function mountPhoto(slot) {
-    var url = slot.dataset.photo;
-    if (!url || location.protocol === 'file:') return;
-    fetch(url, { method: 'HEAD' }).then(function (res) {
-      if (!res.ok) return;
-      var img = document.createElement('img');
-      img.className = 'shot-img';
-      img.alt = slot.dataset.photoAlt || '';
-      img.src = url;
-      img.addEventListener('error', function () { img.remove(); });
-      slot.appendChild(img);
-      slot.classList.add('has-photo');
-    }).catch(function () { /* offline or blocked: keep the SVG */ });
-  }
-  document.querySelectorAll('.shot[data-photo]').forEach(mountPhoto);
+     Photos are plain <img> so the browser fetches them without waiting on JS, with
+     width/height set to reserve space (no layout shift). If one ever fails to load we
+     drop it and the inline SVG illustration underneath takes over. */
+  document.querySelectorAll('.shot-img').forEach(function (img) {
+    var slot = img.parentElement;
+    function drop() { img.remove(); slot.classList.remove('has-photo'); }
+    function keep() { slot.classList.add('has-photo'); }
+    img.addEventListener('error', drop);
+    img.addEventListener('load', keep);
+    if (img.complete) { img.naturalWidth === 0 ? drop() : keep(); }
+  });
 
   updateCount();
 })();

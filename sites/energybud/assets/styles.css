@@ -197,14 +197,12 @@ section.band{padding:clamp(3.5rem,7vw,6rem) 0}
 
 /* ---------- Variants ---------- */
 .variant-wrap{display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center}
-.swatches{display:flex; gap:1rem; margin:1.4rem 0}
-.swatch{cursor:pointer; border:2px solid var(--line); background:var(--surface); border-radius:14px; padding:.7rem 1rem;
-  display:flex; align-items:center; gap:.7rem; font-family:var(--font-disp); font-weight:700; text-transform:uppercase; letter-spacing:.04em; transition:.2s}
-.swatch:hover{border-color:var(--cyan)}
-.swatch[aria-pressed="true"]{border-color:var(--accent); background:color-mix(in srgb,var(--cyan) 12%, var(--surface))}
-.swatch .dab{width:26px;height:26px;border-radius:8px;border:1px solid rgba(0,0,0,.1)}
+.swatches{display:flex; gap:.7rem; margin:1.4rem 0; flex-wrap:wrap; list-style:none; padding:0}
+.swatch{border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:.5rem .9rem;
+  display:flex; align-items:center; gap:.6rem; font-family:var(--font-disp); font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:.95rem}
+.swatch .dab{width:20px;height:20px;border-radius:50%;border:1px solid rgba(0,0,0,.12);flex:none}
 .variant-visual{background:linear-gradient(160deg,var(--surface),var(--surface-2)); border:1px solid var(--line);
-  border-radius:24px; box-shadow:var(--shadow); display:grid;place-items:center; aspect-ratio:1/1; transition:background .4s}
+  border-radius:24px; box-shadow:var(--shadow); display:grid;place-items:center; aspect-ratio:4/3; transition:background .4s}
 .variant-visual svg{width:56%}
 @media(max-width:760px){.variant-wrap{grid-template-columns:1fr}}
 
@@ -260,10 +258,11 @@ footer{padding:3rem 0 2.5rem; border-top:1px solid var(--line); color:var(--text
 .gallery-main{background:linear-gradient(160deg,var(--surface),var(--surface-2));border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);display:grid;place-items:center;aspect-ratio:1/1;transition:background .4s}
 .gallery-main svg{width:60%}
 .thumbs{display:flex;gap:.8rem;margin-top:1rem}
-.thumb{flex:1;aspect-ratio:1/1;border:2px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;display:grid;place-items:center;transition:.2s;padding:10%}
+.thumb{flex:1;aspect-ratio:1/1;border:2px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;display:grid;place-items:center;transition:.2s;padding:6px;overflow:hidden}
 .thumb:hover{border-color:var(--cyan)}
 .thumb[aria-pressed="true"]{border-color:var(--accent)}
 .thumb svg{width:100%}
+.thumb img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
 .pdp-info h1{font-size:clamp(2.2rem,4vw,3.2rem)}
 .price-row{display:flex;align-items:baseline;gap:.8rem;margin:1.1rem 0}
 .price{font-family:var(--font-disp);font-weight:800;font-size:2.6rem;color:var(--blue)}
@@ -337,17 +336,25 @@ footer{padding:3rem 0 2.5rem; border-top:1px solid var(--line); color:var(--text
 :root:not([data-theme="light"]) .logo-mark, :root[data-theme="dark"] .logo-mark{filter:invert(1) brightness(1.6)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .logo-mark{filter:invert(1) brightness(1.6)}}
 
-/* ===== Photo slots: real photo overlays the SVG fallback when present ===== */
-/* The SVG keeps its aspect ratio and letterboxes inside the slot (preserveAspectRatio),
-   so neither the illustration nor the photo can overflow its card. */
-.shot{position:relative;display:grid;place-items:center;width:100%;height:100%;border-radius:inherit}
+/* ===== Photo slots: real photo overlays the SVG fallback when present =====
+   Every supplied photo is a designed scene with its own background, so photos fill
+   their card (cover) while the SVG fallback letterboxes (preserveAspectRatio). */
+.shot{position:relative;display:grid;place-items:center;width:100%;height:100%;border-radius:inherit;overflow:hidden}
 .shot > svg{width:100%;height:100%}
-.shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:inherit}
-/* Product cards: breathing room inside the card for both illustration and photo */
-.bottle-card .shot,.gallery-main .shot,.variant-visual .shot{padding:8%}
-.bottle-card .shot-img,.gallery-main .shot-img,.variant-visual .shot-img{padding:10%}
-/* Story block: full-bleed crop */
-.story-visual .shot{overflow:hidden}
-.story-visual .shot-img{inset:0;width:100%;height:100%;object-fit:cover}
-/* Floating chips stay above the photo */
+/* A loaded photo replaces the illustration entirely (:has for modern browsers,
+   .has-photo added by JS as the fallback path) */
+.shot:has(img.shot-img) > svg,.shot.has-photo > svg{display:none}
+.shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:inherit}
+/* Floating spec chips stay above the photo */
 .chip{z-index:3}
+
+/* ===== Small screens: keep the nav inside the viewport (no horizontal scroll) ===== */
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .nav-right{gap:.5rem}
+  .icon-btn{width:38px;height:38px}
+  .icon-btn svg{width:18px;height:18px}
+  .nav-right .btn{padding:.6rem .8rem;font-size:.86rem;letter-spacing:.03em}
+  .brand{font-size:1.25rem}
+  .logo-mark{width:24px;height:28px}
+}

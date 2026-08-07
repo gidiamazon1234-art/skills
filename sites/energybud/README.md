@@ -46,13 +46,20 @@ Nearly There!) which drive the Timeline section.
 
 ## Product photography
 
-Every product visual is a **photo slot**: it ships an inline-SVG illustration and automatically
-upgrades to a real photo the moment the file exists. Drop your images into `assets/img/` using
-the filenames listed in [`assets/img/README.md`](assets/img/README.md) — no code changes needed.
+Real brand photography is in `assets/img/`, selected and cropped from the brand kit:
 
-Mechanically, `app.js` HEAD-probes each `.shot[data-photo]` and only injects an `<img>` when the
-request succeeds, so a missing photo never shows a broken-image icon. (The browser still records
-one 404 per missing file in the Network tab; that disappears once the photos are uploaded.)
+| File | Shot | Source |
+|---|---|---|
+| `hero.jpg` | Bottle in the sky showing every time marker | Banner 09 |
+| `product-main.jpg` | The motivational marker column | A+_07-1 |
+| `product-alt.jpg` | The oz / ml measurement scale | A+_07-2 |
+| `colors.jpg` | Colourway line-up on the track | A+_02 |
+| `lifestyle.jpg` | People using it | Banner 06 |
+
+Each sits in a `.shot` wrapper alongside an inline-SVG illustration. The photo is a plain `<img>`
+with `width`/`height` set (so nothing shifts as it loads) and CSS hides the SVG once a photo is
+present. If a photo ever fails to load, `app.js` removes it and the illustration takes over.
+All five total ~1.1 MB.
 
 Still placeholder: **customer reviews are invented** and clearly marked as illustrative in the
 footer — swap them for real reviews before production. Tritan™ is a trademark of Eastman Chemical Company.
