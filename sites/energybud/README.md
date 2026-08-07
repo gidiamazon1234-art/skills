@@ -44,6 +44,15 @@ retail price ($39.95), the real Amazon rating (4.4 / 1,075 ratings), the real pr
 real colourways, and the **actual motivational phrases printed on the bottle** (Rise & Grind →
 Nearly There!) which drive the Timeline section.
 
+## Product photography
+
+Every product visual is a **photo slot**: it ships an inline-SVG illustration and automatically
+upgrades to a real photo the moment the file exists. Drop your images into `assets/img/` using
+the filenames listed in [`assets/img/README.md`](assets/img/README.md) — no code changes needed.
+
+Mechanically, `app.js` HEAD-probes each `.shot[data-photo]` and only injects an `<img>` when the
+request succeeds, so a missing photo never shows a broken-image icon. (The browser still records
+one 404 per missing file in the Network tab; that disappears once the photos are uploaded.)
+
 Still placeholder: **customer reviews are invented** and clearly marked as illustrative in the
-footer — swap them for real reviews before production. Product imagery is inline SVG; drop in
-real photography from the brand kit when ready. Tritan™ is a trademark of Eastman Chemical Company.
+footer — swap them for real reviews before production. Tritan™ is a trademark of Eastman Chemical Company.

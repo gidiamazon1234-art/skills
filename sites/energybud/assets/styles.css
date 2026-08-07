@@ -336,3 +336,18 @@ footer{padding:3rem 0 2.5rem; border-top:1px solid var(--line); color:var(--text
 .brand{gap:.55rem}
 :root:not([data-theme="light"]) .logo-mark, :root[data-theme="dark"] .logo-mark{filter:invert(1) brightness(1.6)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .logo-mark{filter:invert(1) brightness(1.6)}}
+
+/* ===== Photo slots: real photo overlays the SVG fallback when present ===== */
+/* The SVG keeps its aspect ratio and letterboxes inside the slot (preserveAspectRatio),
+   so neither the illustration nor the photo can overflow its card. */
+.shot{position:relative;display:grid;place-items:center;width:100%;height:100%;border-radius:inherit}
+.shot > svg{width:100%;height:100%}
+.shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;border-radius:inherit}
+/* Product cards: breathing room inside the card for both illustration and photo */
+.bottle-card .shot,.gallery-main .shot,.variant-visual .shot{padding:8%}
+.bottle-card .shot-img,.gallery-main .shot-img,.variant-visual .shot-img{padding:10%}
+/* Story block: full-bleed crop */
+.story-visual .shot{overflow:hidden}
+.story-visual .shot-img{inset:0;width:100%;height:100%;object-fit:cover}
+/* Floating chips stay above the photo */
+.chip{z-index:3}

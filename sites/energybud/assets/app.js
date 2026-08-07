@@ -80,6 +80,15 @@
         if (g1) g1.setAttribute('stop-color', th.dataset.c1);
         if (g2) g2.setAttribute('stop-color', th.dataset.c2);
         if (colorName) colorName.textContent = th.dataset.name;
+        // Swap the main photo when one exists for this colourway
+        var slot = document.querySelector('.gallery-main .shot');
+        if (slot && th.dataset.img) {
+          slot.dataset.photo = th.dataset.img;
+          var cur = slot.querySelector('.shot-img');
+          if (cur) cur.remove();
+          slot.classList.remove('has-photo');
+          mountPhoto(slot);
+        }
       });
     });
 
@@ -151,6 +160,26 @@
     });
     render();
   }
+
+  /* ---------- Photo slots ----------
+     Each .shot[data-photo] ships an SVG illustration as its default. We HEAD-probe the
+     photo first: a 404 resolves normally (no console error, no broken-image icon), so the
+     page stays clean until the real photography is uploaded — then it appears by itself. */
+  function mountPhoto(slot) {
+    var url = slot.dataset.photo;
+    if (!url || location.protocol === 'file:') return;
+    fetch(url, { method: 'HEAD' }).then(function (res) {
+      if (!res.ok) return;
+      var img = document.createElement('img');
+      img.className = 'shot-img';
+      img.alt = slot.dataset.photoAlt || '';
+      img.src = url;
+      img.addEventListener('error', function () { img.remove(); });
+      slot.appendChild(img);
+      slot.classList.add('has-photo');
+    }).catch(function () { /* offline or blocked: keep the SVG */ });
+  }
+  document.querySelectorAll('.shot[data-photo]').forEach(mountPhoto);
 
   updateCount();
 })();
