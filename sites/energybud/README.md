@@ -71,8 +71,29 @@ with `width`/`height` set (so nothing shifts as it loads) and CSS hides the SVG 
 present. If a photo ever fails to load, `app.js` removes it and the illustration takes over.
 All eleven total ~1.4 MB.
 
-Still placeholder: **customer reviews are invented** and clearly marked as illustrative in the
-footer — swap them for real reviews before production. Tritan™ is a trademark of Eastman Chemical Company.
+## Reviews
+
+The homepage shows six **real verified-purchase reviews** taken from the Amazon listing, lightly
+trimmed for length, alongside the real rating distribution (4.4 average, 1,146 global ratings,
+72/11/8/4/5% across five to one star). Nothing on the site is invented any more.
+
+Tritan™ is a trademark of Eastman Chemical Company.
+
+## Outbound tracking
+
+Every Amazon CTA carries a `data-track` label (`hero`, `nav`, `pdp-buy`, `colorways`, …) and
+`app.js` appends it as `ascsubtag` on click, so Amazon reports which button drove each visit.
+
+To attribute sales — and qualify for the Brand Referral Bonus — fill in the two fields at the top
+of the tracking block in `assets/app.js`:
+
+```js
+var AMAZON = { tag: 'your-associates-tag', attribution: 'your-attribution-id' };
+```
+
+Leaving them empty changes nothing; links keep working exactly as they are, including with
+JavaScript disabled. The click handler also emits an event to Google Analytics (`gtag`),
+Plausible or GTM's `dataLayer` if any of them is loaded, and does nothing when none is.
 
 ## Deployment
 

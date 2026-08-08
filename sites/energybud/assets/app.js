@@ -47,4 +47,35 @@
     if (img.complete) { img.naturalWidth === 0 ? drop() : keep(); }
   });
 
+  /* ---------- Outbound Amazon tracking ----------
+     Every buy link keeps working with JS off; this only decorates it on click.
+     Fill in the two values below once and every CTA on the site is tracked:
+       tag         your Associates / Brand Referral tag  e.g. 'energybud-20'
+       attribution your Amazon Attribution id from the Advertising console
+     Leaving them empty changes nothing. `ascsubtag` always records which button
+     was used (hero, nav, pdp-buy, ...) so you can see what actually converts. */
+  var AMAZON = { tag: '', attribution: '' };
+
+  function decorate(url, place) {
+    try {
+      var u = new URL(url, location.href);
+      if (!/(^|\.)amazon\./.test(u.hostname)) return url;
+      if (AMAZON.tag) u.searchParams.set('tag', AMAZON.tag);
+      if (AMAZON.attribution) { u.searchParams.set('maas', AMAZON.attribution); u.searchParams.set('ref_', 'aa_maas'); }
+      if (place) u.searchParams.set('ascsubtag', place);
+      return u.toString();
+    } catch (e) { return url; }
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href*="amazon."]');
+    if (!a) return;
+    var place = a.dataset.track || 'other';
+    // Fire into whichever analytics tool is present; no-op when none is loaded.
+    if (window.gtag) window.gtag('event', 'select_promotion', { promotion_name: 'buy_on_amazon', location_id: place });
+    if (window.plausible) window.plausible('Buy on Amazon', { props: { location: place } });
+    if (window.dataLayer) window.dataLayer.push({ event: 'amazon_click', location: place });
+    a.href = decorate(a.getAttribute('href'), place);
+  });
+
 })();
