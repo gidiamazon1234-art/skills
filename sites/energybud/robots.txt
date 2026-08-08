@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gidiamazon1234-art.github.io/skills/sitemap.xml
