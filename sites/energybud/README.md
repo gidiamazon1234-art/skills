@@ -95,24 +95,14 @@ Leaving them empty changes nothing; links keep working exactly as they are, incl
 JavaScript disabled. The click handler also emits an event to Google Analytics (`gtag`),
 Plausible or GTM's `dataLayer` if any of them is loaded, and does nothing when none is.
 
-## Deployment (Bluehost)
+## Deployment
 
-The site is plain static files — no build step, no Node, no database. It lives at
-**https://energybuddd.com**.
+The site is static — 23 files, no build step. It is hosted on **Bluehost** at
+**https://energybuddd.com**, uploaded to `public_html/` via cPanel File Manager.
 
-1. Log in to Bluehost → **cPanel → File Manager** (or use FTP/SFTP).
-2. Open `public_html/` for the `energybuddd.com` domain. If anything is already in there
-   (a default `index.html`, a parked page), delete or move it first.
-3. Upload the contents of this folder — `index.html`, `features.html`, `product.html`,
-   `about.html`, `404.html`, `robots.txt`, `sitemap.xml`, `.htaccess` and the whole `assets/`
-   directory — so `index.html` sits directly in `public_html/`, not in a subfolder.
-   The easiest route is to upload the release zip and use File Manager's **Extract**.
-4. Make sure hidden files are visible in File Manager (Settings → Show Hidden Files) so
-   `.htaccess` actually uploads — it is easy to miss and it carries the HTTPS redirect.
-5. In cPanel, turn on the free **AutoSSL / Let's Encrypt** certificate for the domain if it
-   isn't already issued.
-
-To update the site later, re-upload the changed files. Nothing is cached server-side.
+Full step-by-step, including migrating off the previous CloudBe host without downtime, is in
+**[DEPLOY.md](DEPLOY.md)**. Read the first two steps before changing anything — where the domain
+is registered, and whether any email runs on it, both decide the safe order of operations.
 
 ### What `.htaccess` does
 
@@ -122,8 +112,7 @@ To update the site later, re-upload the changed files. Nothing is cached server-
 - Gzip compression, plus long cache lifetimes on images/CSS/JS and no-cache on HTML
 - Lets `/product` work as well as `/product.html`
 
-If Bluehost ever ignores it, confirm the plan allows `.htaccess` overrides — on shared hosting
-it normally does.
+Upload it with hidden files visible in File Manager, or it will be silently skipped.
 
 ## SEO
 
