@@ -95,18 +95,40 @@ Leaving them empty changes nothing; links keep working exactly as they are, incl
 JavaScript disabled. The click handler also emits an event to Google Analytics (`gtag`),
 Plausible or GTM's `dataLayer` if any of them is loaded, and does nothing when none is.
 
-## Deployment
+## Deployment (Bluehost)
 
-`.github/workflows/deploy-energybud.yml` publishes this folder to GitHub Pages on every push to
-`main` that touches `sites/energybud/`. Enable it once under **Settings → Pages → Source →
-GitHub Actions**.
+The site is plain static files — no build step, no Node, no database. It lives at
+**https://energybuddd.com**.
 
-The site is then served at `https://gidiamazon1234-art.github.io/skills/`. To move it to a custom
-domain, add a `CNAME` file here containing the domain, point the DNS at GitHub Pages, and update
-the absolute URLs in the `og:`/`canonical` tags, `robots.txt` and `sitemap.xml`.
+1. Log in to Bluehost → **cPanel → File Manager** (or use FTP/SFTP).
+2. Open `public_html/` for the `energybuddd.com` domain. If anything is already in there
+   (a default `index.html`, a parked page), delete or move it first.
+3. Upload the contents of this folder — `index.html`, `features.html`, `product.html`,
+   `about.html`, `404.html`, `robots.txt`, `sitemap.xml`, `.htaccess` and the whole `assets/`
+   directory — so `index.html` sits directly in `public_html/`, not in a subfolder.
+   The easiest route is to upload the release zip and use File Manager's **Extract**.
+4. Make sure hidden files are visible in File Manager (Settings → Show Hidden Files) so
+   `.htaccess` actually uploads — it is easy to miss and it carries the HTTPS redirect.
+5. In cPanel, turn on the free **AutoSSL / Let's Encrypt** certificate for the domain if it
+   isn't already issued.
+
+To update the site later, re-upload the changed files. Nothing is cached server-side.
+
+### What `.htaccess` does
+
+- Forces HTTPS, and redirects `www.energybuddd.com` to `energybuddd.com` so there is one
+  canonical host (matching the `canonical` tags)
+- Serves `404.html` for missing pages
+- Gzip compression, plus long cache lifetimes on images/CSS/JS and no-cache on HTML
+- Lets `/product` work as well as `/product.html`
+
+If Bluehost ever ignores it, confirm the plan allows `.htaccess` overrides — on shared hosting
+it normally does.
 
 ## SEO
 
 Each page carries canonical, Open Graph and Twitter card tags; `product.html` also ships
 Product structured data (schema.org) including the 4.4 / 1,146 rating and the $39.95 offer, so
-search results can show rich product info. `robots.txt` and `sitemap.xml` are in this folder.
+search results can show rich product info. `robots.txt` and `sitemap.xml` are in this folder, both pointing at `https://energybuddd.com`.
+
+After the site is live, submit `https://energybuddd.com/sitemap.xml` in Google Search Console.
