@@ -44,7 +44,7 @@ python3 -m http.server 8000
 ## Notes
 
 Real brand assets in use: the logo mark (`assets/logo-mark.png`, from the brand kit), the real
-retail price ($39.95), the real Amazon rating (4.4 / 1,075 ratings), the real product title, the
+retail price ($39.95), the real Amazon rating (4.4 / 1,146 ratings), the real product title, the
 real colourways, and the **actual motivational phrases printed on the bottle** (Rise & Grind →
 Nearly There!) which drive the Timeline section.
 
@@ -108,5 +108,5 @@ the absolute URLs in the `og:`/`canonical` tags, `robots.txt` and `sitemap.xml`.
 ## SEO
 
 Each page carries canonical, Open Graph and Twitter card tags; `product.html` also ships
-Product structured data (schema.org) including the 4.4 / 1,075 rating and the $39.95 offer, so
+Product structured data (schema.org) including the 4.4 / 1,146 rating and the $39.95 offer, so
 search results can show rich product info. `robots.txt` and `sitemap.xml` are in this folder.
