@@ -468,3 +468,12 @@ footer{padding:3rem 0 2.5rem; border-top:1px solid var(--line); color:var(--text
 .size-opt[aria-pressed="true"]{border-color:var(--accent);
   background:color-mix(in srgb,var(--cyan) 10%, var(--surface))}
 .size-opt[aria-pressed="true"] span{color:var(--accent)}
+
+/* Both sizes, every colour */
+.cw-sizes{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:0 0 1.6rem}
+.cw-sizes span{display:inline-flex;align-items:baseline;gap:.35rem;background:var(--surface);
+  border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem;
+  font-family:var(--font-disp);font-weight:600;text-transform:uppercase;letter-spacing:.05em;
+  font-size:.86rem;color:var(--text-soft)}
+.cw-sizes span b{font-weight:800;font-size:1rem;color:var(--text)}
+.cw-sizes em{font-style:normal;color:var(--text-faint);font-size:.92rem}
