@@ -65,11 +65,13 @@ Real brand photography is in `assets/img/`, selected and cropped from the brand 
 | `f-strap.jpg` | Adjustable shoulder strap | A+_04-4 |
 | `f-silicone.jpg` | Protective silicone bottom | A+_04-5 |
 | `f-clean.jpg` | Dishwasher safe, brushes included | A+_04-6 |
+| `hg-main.jpg` | Half-gallon marker column | half-gallon A+_07-1 |
+| `hg-alt.jpg` | Half-gallon oz / ml scale | half-gallon A+_07-2 |
 
 Each sits in a `.shot` wrapper alongside an inline-SVG illustration. The photo is a plain `<img>`
 with `width`/`height` set (so nothing shifts as it loads) and CSS hides the SVG once a photo is
 present. If a photo ever fails to load, `app.js` removes it and the illustration takes over.
-All eleven total ~1.4 MB.
+All thirteen total ~1.5 MB.
 
 ## Reviews
 
@@ -84,6 +86,18 @@ Turquoise — and states that every one is available in both the 128 oz gallon a
 gallon, which is true of the range. Each swatch is an inline SVG whose gradient stops were **sampled from the actual
 product photography** (`A+_01` / `A+_02`), so the colours on screen match the bottles rather
 than being approximated by eye.
+
+## Sizes
+
+The product page has a 128 oz / 74 oz toggle. Reading both bottles' own photography settled what
+actually differs between them:
+
+- **Identical:** all seven motivational markers, word for word and hour for hour — 8 AM
+  *Rise & Grind!* through 8 PM *Nearly There!*
+- **Different:** the measurement scale, necessarily — 128 oz / 3780 ml on the gallon,
+  74 oz / 2200 ml on the half gallon
+
+The copy says exactly that rather than the vaguer "same time markers".
 
 Tritan™ is a trademark of Eastman Chemical Company.
 
