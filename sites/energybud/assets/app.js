@@ -78,42 +78,4 @@
     a.href = decorate(a.getAttribute('href'), place);
   });
 
-  /* ---------- Size toggle (product page) ----------
-     Both sizes are variations of one Amazon listing, so the buy link is unchanged;
-     the toggle swaps the gallery and the stated capacity, and tags the outbound
-     click so Amazon reports which size the visitor was looking at. */
-  var sizeOpts = document.querySelectorAll('.size-opt');
-  if (sizeOpts.length) {
-    var capEl = document.getElementById('sizeCap');
-    sizeOpts.forEach(function (opt) {
-      opt.addEventListener('click', function () {
-        sizeOpts.forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
-        opt.setAttribute('aria-pressed', 'true');
-        if (capEl) capEl.textContent = opt.dataset.cap;
-
-        // Point the thumbnails at this size, keeping the current shot if the
-        // photo for it hasn't been added yet.
-        var thumbs = document.querySelectorAll('.thumb');
-        [opt.dataset.img, opt.dataset.alt].forEach(function (src, i) {
-          var th = thumbs[i]; if (!th || !src) return;
-          var probe = new Image();
-          probe.onload = function () {
-            th.dataset.img = src;
-            var thumbImg = th.querySelector('img'); if (thumbImg) thumbImg.src = src;
-            if (th.getAttribute('aria-pressed') === 'true') {
-              var main = document.querySelector('.gallery-main .shot-img');
-              if (main) main.src = src;
-            }
-          };
-          probe.src = src;
-        });
-
-        // Record the size on every Amazon link on this page.
-        document.querySelectorAll('a[href*="amazon."]').forEach(function (a) {
-          a.dataset.track = (a.dataset.track || 'pdp').replace(/-(128|74)$/, '') + '-' + opt.dataset.trackSize;
-        });
-      });
-    });
-  }
-
 })();

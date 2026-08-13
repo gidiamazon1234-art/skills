@@ -477,3 +477,32 @@ footer{padding:3rem 0 2.5rem; border-top:1px solid var(--line); color:var(--text
   font-size:.86rem;color:var(--text-soft)}
 .cw-sizes span b{font-weight:800;font-size:1rem;color:var(--text)}
 .cw-sizes em{font-style:normal;color:var(--text-faint);font-size:.92rem}
+
+/* ===== Colourways: the same line-up, photographed at each size ===== */
+/* Stacked, not paired: the two line-up photos have very different native
+   aspect ratios, so each keeps its own rather than being cropped to match. */
+.cw-sizerow{display:grid;gap:1.8rem}
+.cw-size{margin:0}
+.cw-size .cw-photo{aspect-ratio:auto}
+.cw-size .cw-photo img{width:100%;height:auto;object-fit:contain}
+.cw-size figcaption{display:flex;align-items:baseline;gap:.55rem;flex-wrap:wrap;margin-top:.9rem;
+  font-family:var(--font-disp);text-transform:uppercase;letter-spacing:.05em}
+.cw-size figcaption b{font-weight:800;font-size:1.35rem;line-height:1}
+.cw-size figcaption span{font-weight:600;font-size:.86rem;color:var(--text-faint)}
+.cw-size figcaption a{margin-left:auto;font-weight:700;font-size:.86rem;color:var(--accent);
+  text-decoration:underline;text-underline-offset:4px}
+.cw-size figcaption a:hover{color:var(--blue)}
+@media(max-width:560px){.cw-size figcaption a{margin-left:0;flex-basis:100%}}
+
+/* ===== Size chips: the current size is a label, the other one is a link ===== */
+.size-opt[aria-current="true"]{border-color:var(--accent);cursor:default;
+  background:color-mix(in srgb,var(--cyan) 10%, var(--surface))}
+.size-opt[aria-current="true"] span{color:var(--accent)}
+a.size-opt{text-decoration:none}
+a.size-opt:hover{border-color:var(--cyan);transform:translateY(-2px)}
+
+/* ===== Five nav items need a little less room than four ===== */
+@media(max-width:1080px){.nav-links{gap:1.25rem;font-size:.92rem}}
+.accordion p a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.cw-band{margin:1.4rem 0 0}
+.cw-band figcaption{margin-top:.8rem;color:var(--text-faint);font-size:.92rem}
