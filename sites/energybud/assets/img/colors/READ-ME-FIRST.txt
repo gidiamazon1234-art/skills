@@ -1,0 +1,40 @@
+COLOUR PHOTOS GO HERE
+=====================
+
+Drop one photo per colourway per size, named exactly like this (all lowercase,
+.jpg):
+
+  1 gallon (128 oz)          half gallon (74 oz)
+  ------------------------   ------------------------
+  lime-128.jpg               lime-74.jpg
+  blue-128.jpg               blue-74.jpg
+  pink-128.jpg               pink-74.jpg
+  violet-128.jpg             violet-74.jpg
+  turquoise-128.jpg          turquoise-74.jpg
+  graphite-128.jpg           graphite-74.jpg      (only if graphite is sold)
+
+You do NOT have to add all of them. The colour picker on the product pages
+shows only the swatches whose photo it actually finds, so you can add two now
+and the rest later. If none are here, the picker stays hidden and the page
+looks exactly as it does today.
+
+What each photo should be
+-------------------------
+- One bottle, that colour, whole bottle in frame, same framing for all of them
+- Plain or simple background (white/studio is ideal)
+- Portrait, roughly 1100 x 1250 px for the gallon and 1000 x 1440 for the half
+  gallon. Bigger is fine, it gets displayed inside a square card.
+- Under about 300 KB each so the page stays fast
+
+After adding files
+------------------
+Open available.txt in this folder and delete the "# " in front of each colour
+you have added photos for. That one file is what switches a swatch on. Nothing
+else to change.
+
+  # lime        <- hidden
+  lime          <- showing
+
+(If you ever change styles.css or app.js, bump the ?v= number in the <link> and
+<script> tags on every page so browsers pick up the new file instead of a
+cached one.)

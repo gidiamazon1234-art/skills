@@ -78,4 +78,58 @@
     a.href = decorate(a.getAttribute('href'), place);
   });
 
+  /* ---------- Colour picker ----------
+     Which colours we have photos for is declared in assets/img/colors/available.txt
+     (one slug per line, # for comments) — one small request, instead of probing
+     every colour and littering the log with 404s. A swatch is only shown if its
+     slug is listed, and the photo is still verified on click before it is swapped
+     in, so a typo in the list can never blank the gallery. With no list, an empty
+     list, or JS off, the block stays hidden and the page reads as it did before. */
+  var pick = document.getElementById('colorPick');
+  if (pick && window.fetch) {
+    var swatches = Array.prototype.slice.call(pick.querySelectorAll('.cp'));
+    var nameEl = document.getElementById('cpName');
+    var mainImg = document.querySelector('.gallery-main .shot-img');
+
+    function select(sw) {
+      swatches.forEach(function (s) { s.setAttribute('aria-pressed', 'false'); });
+      sw.setAttribute('aria-pressed', 'true');
+      if (nameEl) nameEl.textContent = sw.dataset.name;
+      if (mainImg) {
+        mainImg.src = sw.dataset.photo;
+        mainImg.alt = 'EnergyBud bottle in ' + sw.dataset.name;
+      }
+      // A colour is showing, so no thumbnail is the current view any more.
+      document.querySelectorAll('.thumb').forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
+    }
+
+    fetch('assets/img/colors/available.txt', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .catch(function () { return ''; })
+      .then(function (txt) {
+        var listed = txt.split(/\r?\n/)
+          .map(function (l) { return l.replace(/#.*/, '').trim().toLowerCase(); })
+          .filter(Boolean);
+        if (!listed.length) return;
+
+        var live = swatches.filter(function (sw) { return listed.indexOf(sw.dataset.slug) > -1; });
+        if (!live.length) return;
+
+        swatches.forEach(function (sw) { if (live.indexOf(sw) < 0) sw.remove(); });
+        live.forEach(function (sw) {
+          sw.addEventListener('click', function () {
+            // Verify before swapping: a listed-but-missing file drops its swatch
+            // rather than leaving an empty gallery behind.
+            var probe = new Image();
+            probe.onload = function () { select(sw); };
+            probe.onerror = function () { sw.remove(); };
+            probe.src = sw.dataset.photo;
+          });
+        });
+        pick.hidden = false;
+        var fb = document.getElementById('colorFallback');
+        if (fb) fb.hidden = true;
+      });
+  }
+
 })();

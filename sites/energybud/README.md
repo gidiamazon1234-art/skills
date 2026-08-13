@@ -45,7 +45,7 @@ python3 -m http.server 8000
 ## Notes
 
 Real brand assets in use: the logo mark (`assets/logo-mark.png`, from the brand kit), the real
-retail price ($29.99), the real Amazon rating (4.4 / 1,146 ratings), the real product title, the
+retail prices ($29.99 gallon, $25.99 half gallon), the real Amazon rating (4.4 / 1,146 ratings), the real product title, the
 real colourways, and the **actual motivational phrases printed on the bottle** (Rise & Grind →
 Nearly There!) which drive the Timeline section.
 
@@ -133,6 +133,28 @@ Leaving them empty changes nothing; links keep working exactly as they are, incl
 JavaScript disabled. The click handler also emits an event to Google Analytics (`gtag`),
 Plausible or GTM's `dataLayer` if any of them is loaded, and does nothing when none is.
 
+## Colour picker
+
+`product.html` and `half-gallon.html` each carry a colour picker that swaps the main
+gallery photo. It is driven entirely by files, so it needs no code change to grow:
+
+- photos live in `assets/img/colors/` as `<slug>-128.jpg` and `<slug>-74.jpg`
+  (slugs: `lime`, `blue`, `pink`, `violet`, `turquoise`, `graphite`)
+- `assets/img/colors/available.txt` lists which slugs are live, one per line, `#` to comment out
+
+`app.js` reads that one file — not twelve speculative image requests — and shows only the listed
+swatches. On click it verifies the photo before swapping it in, so a slug listed without its file
+drops its own swatch instead of blanking the gallery. Empty list, missing file or JS off: the block
+stays hidden and the pages read exactly as they did before it existed. `assets/img/colors/READ-ME-FIRST.txt`
+says all of this in plain language for whoever adds the photos.
+
+## Asset cache-busting
+
+`.htaccess` serves CSS/JS `immutable` for a year, so a new HTML file paired with a cached
+stylesheet renders unstyled. Every page therefore links `styles.css?v=N`, `fonts.css?v=N` and
+`app.js?v=N`. **Bump N on all six pages whenever you edit CSS or JS**, or returning visitors keep
+the old copy.
+
 ## Deployment
 
 The site is static — no build step. It is hosted on **Bluehost** at
@@ -155,7 +177,7 @@ Upload it with hidden files visible in File Manager, or it will be silently skip
 ## SEO
 
 Each page carries canonical, Open Graph and Twitter card tags; `product.html` and
-`half-gallon.html` also ship Product structured data (schema.org) including the 4.4 / 1,146 rating and the $29.99 offer, so
+`half-gallon.html` also ship Product structured data (schema.org) including the 4.4 / 1,146 rating and each size's own price, so
 search results can show rich product info. `robots.txt` and `sitemap.xml` are in this folder, both pointing at `https://energybuddd.com`.
 
 After the site is live, submit `https://energybuddd.com/sitemap.xml` in Google Search Console.

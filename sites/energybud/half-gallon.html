@@ -28,10 +28,10 @@
  "material":"Eastman Tritan Copolyester",
  "isSimilarTo":{"@type":"Product","name":"EnergyBud 1 Gallon Water Bottle With Straw and Handle","url":"https://energybuddd.com/product.html"},
  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.4","reviewCount":"1146"},
- "offers":{"@type":"Offer","url":"https://www.amazon.com/dp/B085LL6253","priceCurrency":"USD","price":"29.99","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"EnergyBud"}}}
+ "offers":{"@type":"Offer","url":"https://www.amazon.com/dp/B085LL6253","priceCurrency":"USD","price":"25.99","availability":"https://schema.org/InStock","seller":{"@type":"Organization","name":"EnergyBud"}}}
 </script>
-<link rel="stylesheet" href="assets/fonts.css">
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/fonts.css?v=4">
+<link rel="stylesheet" href="assets/styles.css?v=4">
 </head>
 <body>
 
@@ -108,21 +108,37 @@
         <strong class="tnum">4.4</strong> · 1,146 ratings
       </div>
       <div class="price-row">
-        <span class="price tnum">$29.99</span>
-        <span class="save-pill">Prime · Free delivery</span>
+        <span class="price tnum">$25.99</span>
+        <span class="save-pill">$4 less than the gallon</span>
       </div>
       <p class="lead" style="margin-top:0">74 oz — a half gallon — with the same seven motivational markers printed up the side. Light enough to actually carry all day, big enough that two fills is a gallon done.</p>
 
       <p class="opt-label">Size</p>
       <div class="size-toggle" role="group" aria-label="Choose a size">
-        <a class="size-opt" href="product.html"><b class="tnum">128 oz</b><span>1 gallon</span></a>
-        <div class="size-opt" aria-current="true"><b class="tnum">74 oz</b><span>half gallon · you're here</span></div>
+        <a class="size-opt" href="product.html"><b class="tnum">128 oz</b><span>1 gallon</span><em class="tnum">$29.99 &rarr;</em></a>
+        <div class="size-opt" aria-current="true"><b class="tnum">74 oz</b><span>half gallon</span><em class="tnum">$25.99 · you're here</em></div>
       </div>
       <p style="color:var(--text-soft);margin-top:.7rem">74 fl oz (2200 ml) · half gallon</p>
       <p style="color:var(--text-faint);font-size:.9rem;margin-top:.2rem">Both sizes are variations of the same Amazon listing — pick the size on the listing page.</p>
 
+      <!-- Colour picker. Each swatch is switched on only when its photo exists in
+           assets/img/colors/ ; the whole block stays hidden until at least one does.
+           Drop in <slug>-74.jpg (1000x1440, same framing as the gallery) to light one up. -->
+      <div class="color-pick" id="colorPick" data-size="74" hidden>
+        <p class="opt-label">Colour</p>
+        <div class="cp-row" role="group" aria-label="Choose a colourway">
+          <button type="button" class="cp" data-name="Lime Fade" data-slug="lime" data-photo="assets/img/colors/lime-74.jpg" style="--a:#E2E007;--b:#A0CA18" aria-pressed="false" aria-label="Lime Fade"></button>
+          <button type="button" class="cp" data-name="Blue &amp; Black" data-slug="blue" data-photo="assets/img/colors/blue-74.jpg" style="--a:#84C4DD;--b:#009ECD" aria-pressed="false" aria-label="Blue &amp; Black"></button>
+          <button type="button" class="cp" data-name="Pink Fade" data-slug="pink" data-photo="assets/img/colors/pink-74.jpg" style="--a:#E3B3D3;--b:#D347A1" aria-pressed="false" aria-label="Pink Fade"></button>
+          <button type="button" class="cp" data-name="Violet Fade" data-slug="violet" data-photo="assets/img/colors/violet-74.jpg" style="--a:#B9CAE5;--b:#9B93E7" aria-pressed="false" aria-label="Violet Fade"></button>
+          <button type="button" class="cp" data-name="Turquoise" data-slug="turquoise" data-photo="assets/img/colors/turquoise-74.jpg" style="--a:#8ADDE7;--b:#4CC2D5" aria-pressed="false" aria-label="Turquoise"></button>
+          <button type="button" class="cp" data-name="Graphite" data-slug="graphite" data-photo="assets/img/colors/graphite-74.jpg" style="--a:#8E9193;--b:#3A3F42" aria-pressed="false" aria-label="Graphite"></button>
+        </div>
+        <p class="cp-name" id="cpName"></p>
+      </div>
+
       <div class="buy-actions">
-        <a data-track="hg-buy" class="btn btn-primary" href="https://www.amazon.com/dp/B085LL6253" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Buy on Amazon — $29.99</a>
+        <a data-track="hg-buy" class="btn btn-primary" href="https://www.amazon.com/dp/B085LL6253" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Buy on Amazon — $25.99</a>
         <a data-track="hg-store" class="btn btn-ghost" href="https://www.amazon.com/stores/ENERGYBUD/page/EEC9B1DF-EBF8-4E41-84A1-8D701AD72783" target="_blank" rel="noopener">Visit the brand store</a>
       </div>
       <p style="color:var(--text-faint);font-size:.88rem;margin-top:.7rem">Ships from Amazon · Prime free delivery · sold by EnergyBud</p>
@@ -159,6 +175,7 @@
         </thead>
         <tbody>
           <tr><th scope="row">Capacity <span>how much it holds</span></th><td class="tnum">128 oz · 3780 ml</td><td class="tnum">74 oz · 2200 ml</td></tr>
+          <tr><th scope="row">Price <span>on Amazon</span></th><td class="tnum">$29.99</td><td class="tnum">$25.99</td></tr>
           <tr><th scope="row">Motivational markers <span>the seven printed phrases</span></th><td>8 AM → 8 PM</td><td>8 AM → 8 PM · identical</td></tr>
           <tr><th scope="row">Measurement scale <span>the oz / ml ladder</span></th><td class="tnum">runs to 3780 ml</td><td class="tnum">runs to 2200 ml</td></tr>
           <tr><th scope="row">6-in-1 leakproof cap</th><td><span class="yes" aria-hidden="true">✓</span><span class="sr-only">Yes</span></td><td><span class="yes" aria-hidden="true">✓</span><span class="sr-only">Yes</span></td></tr>
@@ -198,7 +215,7 @@
 
     <p class="cw-note reveal">Availability varies by colourway — see the current line-up on Amazon.</p>
     <div class="cw-cta reveal">
-      <a data-track="hg-colorways" class="btn btn-primary" href="https://www.amazon.com/dp/B085LL6253" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Buy on Amazon — $29.99</a>
+      <a data-track="hg-colorways" class="btn btn-primary" href="https://www.amazon.com/dp/B085LL6253" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Buy on Amazon — $25.99</a>
       <a class="btn btn-ghost" href="index.html#colors">See both sizes side by side</a>
     </div>
   </div>
@@ -298,7 +315,7 @@
   <div class="wrap">
     <div class="cta-band reveal">
       <h2>Half a gallon. All of the habit.</h2>
-      <p>Same markers, same cap, same colours — in the size you'll take with you. $29.99 on Amazon.</p>
+      <p>Same markers, same cap, same colours — in the size you'll take with you. $25.99 on Amazon.</p>
       <a data-track="hg-cta" class="btn btn-primary" href="https://www.amazon.com/dp/B085LL6253" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg> Buy on Amazon</a>
     </div>
   </div>
@@ -316,6 +333,6 @@
   </div>
 </footer>
 
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=4"></script>
 </body>
 </html>
