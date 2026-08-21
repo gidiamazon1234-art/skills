@@ -150,12 +150,22 @@ drops its own swatch instead of blanking the gallery. Empty list, missing file o
 stays hidden and the pages read exactly as they did before it existed. `assets/img/colors/READ-ME-FIRST.txt`
 says all of this in plain language for whoever adds the photos.
 
-Live today: `lime-74.jpg` and `blue-74.jpg`, cropped from the brand's own `01_main_B` shots for
-those two colourways. Both source files are pixel-aligned — same camera, same staging, only the
-bottle colour differs — so the crop box is identical and switching colours moves nothing but the
-colour. Every further colour should come from that same shot for its colourway.
+Live today:
 
-The gallon has no colour photos yet, so its picker stays hidden.
+| | Lime | Blue | Pink | Violet | Turquoise | Graphite |
+|---|---|---|---|---|---|---|
+| **128 oz** | yes | yes | yes | yes | yes | yes |
+| **74 oz** | yes | yes | — | — | — | — |
+
+The gallon set is cropped from the brand's six transparent-background product renders, which are
+pixel-identical apart from the bottle colour — the same crop box `(700, 120, 2180, 4360)` gives six
+shots where nothing moves but the colour. That box deliberately excludes the shoulder strap, since
+one of the six renders was supplied without it. The half-gallon pair comes the same way from the
+two `01_main_B` shots.
+
+The home page's swatch gradients are sampled from those renders — median of the lit face at two
+heights, which skips both the edge shadow and the specular highlight down the middle — so the
+swatches match the bottles beside them.
 
 ## Asset cache-busting
 

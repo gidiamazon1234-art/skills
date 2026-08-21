@@ -4,9 +4,9 @@
 # is in this folder. Anything after a # is ignored.
 # An empty list hides the colour picker on that page entirely.
 #
-# lime
-# blue
-# pink
-# violet
-# turquoise
-# graphite
+lime
+blue
+pink
+violet
+turquoise
+graphite
