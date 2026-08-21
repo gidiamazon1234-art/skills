@@ -6,7 +6,7 @@
 #
 lime
 blue
-# pink
-# violet
-# turquoise
-# graphite
+pink
+violet
+turquoise
+graphite

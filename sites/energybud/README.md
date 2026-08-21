@@ -155,13 +155,19 @@ Live today:
 | | Lime | Blue | Pink | Violet | Turquoise | Graphite |
 |---|---|---|---|---|---|---|
 | **128 oz** | yes | yes | yes | yes | yes | yes |
-| **74 oz** | yes | yes | — | — | — | — |
+| **74 oz** | yes | yes | yes | yes | yes | yes |
 
 The gallon set is cropped from the brand's six transparent-background product renders, which are
 pixel-identical apart from the bottle colour — the same crop box `(700, 120, 2180, 4360)` gives six
 shots where nothing moves but the colour. That box deliberately excludes the shoulder strap, since
-one of the six renders was supplied without it. The half-gallon pair comes the same way from the
-two `01_main_B` shots.
+one of the six renders was supplied without it.
+
+The half-gallon six come the same way from their `01_main_B` shots, crop box
+`(0.076, 0.005, 0.446, 0.985)` — chosen to clear both the strap loop that intrudes on the left and
+the strap crossing the bottle on the right, so all six are bottle-only.
+
+All twelve are 1200x1200 with the bottle centred on white, because the gallery frame is square and
+crops with `object-fit: cover` — a tall bottle image would show only its middle.
 
 The home page's swatch gradients are sampled from those renders — median of the lit face at two
 heights, which skips both the edge shadow and the specular highlight down the middle — so the
