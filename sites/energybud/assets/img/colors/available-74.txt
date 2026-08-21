@@ -1,0 +1,12 @@
+# Which half gallon (74 oz) colourways have a photo in this folder.
+#
+# One name per line. Remove the "# " in front of a line once that colour's <slug>-74.jpg
+# is in this folder. Anything after a # is ignored.
+# An empty list hides the colour picker on that page entirely.
+#
+lime
+blue
+pink
+violet
+turquoise
+graphite

@@ -1,0 +1,45 @@
+COLOUR PHOTOS GO HERE
+=====================
+
+Two files control this folder:
+
+  available-128.txt   which colours the 1 gallon page offers
+  available-74.txt    which colours the half gallon page offers
+
+Photos are named <colour>-<size>.jpg, all lowercase:
+
+  1 gallon (128 oz)          half gallon (74 oz)
+  ------------------------   ------------------------
+  lime-128.jpg               lime-74.jpg      DONE
+  blue-128.jpg               blue-74.jpg      DONE
+  pink-128.jpg               pink-74.jpg
+  violet-128.jpg             violet-74.jpg
+  turquoise-128.jpg          turquoise-74.jpg
+  graphite-128.jpg           graphite-74.jpg
+
+You do NOT need all of them. Each page shows only the colours listed in its own
+available file, so you can add two now and the rest later. An empty list hides
+the picker on that page and it reads exactly as it did before.
+
+Adding a colour
+---------------
+1. Put the photo in this folder with the right name.
+2. Open the matching available-*.txt and delete the "# " in front of that colour.
+
+     # pink      <- hidden
+     pink        <- showing
+
+What the photo should look like
+-------------------------------
+The two that are already here (lime-74.jpg, blue-74.jpg) are the standard: one
+bottle, straight on, whole bottle in frame, white background, centred on a
+square canvas. Match those and switching colours will look seamless.
+
+The easiest way to get more: the brand's own main product images. Each colourway
+has a 01_main_B.jpg shot with that colour's bottle standing alone on white.
+Send those and they crop straight into this format.
+
+If you change styles.css or app.js
+----------------------------------
+Bump the ?v= number in the <link> and <script> tags on every page, or browsers
+keep serving the cached copy.
