@@ -140,13 +140,22 @@ gallery photo. It is driven entirely by files, so it needs no code change to gro
 
 - photos live in `assets/img/colors/` as `<slug>-128.jpg` and `<slug>-74.jpg`
   (slugs: `lime`, `blue`, `pink`, `violet`, `turquoise`, `graphite`)
-- `assets/img/colors/available.txt` lists which slugs are live, one per line, `#` to comment out
+- `available-128.txt` and `available-74.txt` list which slugs are live for **that size**, one per
+  line, `#` to comment out — per-size, so the gallon page can't advertise a colour only the half
+  gallon has a photo of
 
-`app.js` reads that one file — not twelve speculative image requests — and shows only the listed
-swatches. On click it verifies the photo before swapping it in, so a slug listed without its file
+`app.js` reads the one file for its own size — not twelve speculative image requests — and shows
+only the listed swatches. On click it verifies the photo before swapping it in, so a slug listed without its file
 drops its own swatch instead of blanking the gallery. Empty list, missing file or JS off: the block
 stays hidden and the pages read exactly as they did before it existed. `assets/img/colors/READ-ME-FIRST.txt`
 says all of this in plain language for whoever adds the photos.
+
+Live today: `lime-74.jpg` and `blue-74.jpg`, cropped from the brand's own `01_main_B` shots for
+those two colourways. Both source files are pixel-aligned — same camera, same staging, only the
+bottle colour differs — so the crop box is identical and switching colours moves nothing but the
+colour. Every further colour should come from that same shot for its colourway.
+
+The gallon has no colour photos yet, so its picker stays hidden.
 
 ## Asset cache-busting
 

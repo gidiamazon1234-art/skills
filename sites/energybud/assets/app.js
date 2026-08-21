@@ -79,8 +79,9 @@
   });
 
   /* ---------- Colour picker ----------
-     Which colours we have photos for is declared in assets/img/colors/available.txt
-     (one slug per line, # for comments) — one small request, instead of probing
+     Which colours we have photos for is declared per size in
+     assets/img/colors/available-128.txt and available-74.txt (one slug per line,
+     # for comments) — one small request, instead of probing
      every colour and littering the log with 404s. A swatch is only shown if its
      slug is listed, and the photo is still verified on click before it is swapped
      in, so a typo in the list can never blank the gallery. With no list, an empty
@@ -103,7 +104,7 @@
       document.querySelectorAll('.thumb').forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
     }
 
-    fetch('assets/img/colors/available.txt', { cache: 'no-cache' })
+    fetch('assets/img/colors/available-' + pick.dataset.size + '.txt', { cache: 'no-cache' })
       .then(function (r) { return r.ok ? r.text() : ''; })
       .catch(function () { return ''; })
       .then(function (txt) {
